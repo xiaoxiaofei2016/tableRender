@@ -41,3 +41,12 @@ export const isEmpty = val => {
 
   return false
 }
+
+export const getTableData = () => {
+  return Array.from({ length: 500 }, (_, idx) => ({
+    id: idx + 1,
+    name: '王小虎',
+    time: '2021-12-10 12:12:12',
+    price: '123'
+  }))
+}

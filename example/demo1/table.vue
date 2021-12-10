@@ -10,6 +10,7 @@
 <script>
 import tableRender from '../../src/tableRender.vue'
 import { tableColumn } from './column-config'
+import { getTableData } from '../../src/utils'
 
 export default {
   components: { tableRender },
@@ -34,6 +35,9 @@ export default {
       }
       return tableColumn(handle)
     }
+  },
+  mounted () {
+    this.tableHandler('reloadData', getTableData())
   },
   methods: {
     tableHandler (method, ...args) {

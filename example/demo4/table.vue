@@ -1,6 +1,6 @@
 <template>
   <div class="page-main">
-    <div class="box" style="height: 300px">测试表格自适应box占位</div>
+    <div class="box" style="height: 200px;background:rgb(245, 245, 245)">测试表格自适应box顶部占位</div>
     <!-- fillView为true表示开启表格自适应 -->
     <table-render
       ref="tableRender"
@@ -19,19 +19,21 @@
         <span>{{ column.title }}</span>
       </template>
     </table-render>
+    <div class="box" style="height: 100px;background:rgb(245, 245, 245)">测试表格自适应box底部占位</div>
   </div>
 </template>
 
 <script>
 import tableRender from '../../src/tableRender.vue'
 import { tableColumn } from './column-config'
+import { getTableData } from '../../src/utils'
 
 export default {
   components: { tableRender },
   computed: {
     tableProps () {
       return {
-        maxHeight: '500',
+        'edit-config': { trigger: 'click', mode: 'cell' },
         checkboxConfig: {
           highlight: true,
           checkMethod: this.checkMethod
@@ -46,6 +48,9 @@ export default {
     tableColumn () {
       return tableColumn
     }
+  },
+  mounted () {
+    this.tableHandler('reloadData', getTableData())
   },
   methods: {
     tableHandler (method, ...args) {

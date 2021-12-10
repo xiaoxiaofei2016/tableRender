@@ -19,6 +19,7 @@
 <script>
 import tableRender from '../../src/tableRender.vue'
 import { tableColumn } from './column-config'
+import { getTableData } from '../../src/utils'
 
 export default {
   components: { tableRender },
@@ -26,6 +27,7 @@ export default {
     tableProps () {
       return {
         maxHeight: '500',
+        'edit-config': { trigger: 'click', mode: 'cell' },
         checkboxConfig: {
           highlight: true,
           checkMethod: this.checkMethod
@@ -40,6 +42,9 @@ export default {
     tableColumn () {
       return tableColumn
     }
+  },
+  mounted () {
+    this.tableHandler('reloadData', getTableData())
   },
   methods: {
     tableHandler (method, ...args) {

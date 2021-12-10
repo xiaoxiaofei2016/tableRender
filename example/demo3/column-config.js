@@ -22,19 +22,19 @@ export const time = {
 export const price = {
   field: 'price',
   title: '价格',
+  'edit-render': { autofocus: '.el-input__inner' },
   scopedSlots: {
     default: ({ row }, h) => {
-      return <i class="el-icon-edit" style={{cursor: 'pointer'}}>{row.price}</i>
+      return <i class="el-icon-edit" style={{ cursor: 'pointer' }}>{row.price}</i>
     },
-    edit: ({ row }, h) => {
-      return [<el-input-number
-        precision={2}
+    edit: (scope, h) => {
+      return [<el-input
         min={0}
-        value={row.price}
+        value={scope.row.price}
         onInput={(e) => {
           scope.row.price = e.trim()
         }}>
-      </el-input-number>]
+      </el-input>]
     }
   }
 }

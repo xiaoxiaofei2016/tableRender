@@ -1,6 +1,6 @@
 class InitTableHeight {
-  componentInstance = null
-  el = null
+  componentInstance = null // 组件实例
+  el = null // 元素
 
   constructor (componentInstance) {
     this.componentInstance = componentInstance
@@ -13,9 +13,13 @@ class InitTableHeight {
       })
     })
   }
-
+    
+ /**
+   * @description: 逐级监听父组件加载完成后计算并设置表格渲染高度
+   * @param {*} instance 组件实例
+   * @param {*} callback 所有父组件挂载完成后的回调函数
+   */
   setHeightAfterParentMounted (instance = this.componentInstance, callback) {
-    // 逐级监听父组件加载完成后计算并设置表格渲染高度
     if (typeof instance.$parent === 'undefined') {
       this.setTableHeight(this.getTableHeight())
       callback()
@@ -30,7 +34,11 @@ class InitTableHeight {
       })
     }
   }
-
+    
+  /**
+   * @description: 获取表格高度
+   * @return {Number} tableHeight
+   */
   getTableHeight () {
     // 容器高度
     const flexHeight = this.getFlexHeiht()
@@ -46,12 +54,19 @@ class InitTableHeight {
 
     return tableHeight
   }
-
+    
+  /**
+   * @description: 设置表格高度
+   */
   setTableHeight (height) {
     this.componentInstance.renderHeight = height
   }
 
-
+  /**
+   * @description: 获取元素高度
+   * @param {HTMLElement} element 元素节点
+   * @return {Number} height
+   */
   getElHeiht (element) {
     if (typeof element === 'string') {
       element = document.querySelector(element)
@@ -66,7 +81,10 @@ class InitTableHeight {
     }
     return height + marginTop + marginBottom
   }
-
+  /**
+   * @description: 获取流的高度
+   * @return {Number} flowHeiht
+   */
   getFlowHeiht () {
     const { flowView = this.componentInstance.$parent.$el, flowViewHeiht } = this.componentInstance.fillViewCofig
     if (typeof flowViewHeiht === 'number') {
@@ -76,6 +94,10 @@ class InitTableHeight {
     return this.getElHeiht(flowView)
   }
 
+  /**
+   * @description: 获取容器的高度
+   * @return {Number} flexHeiht
+   */
   getFlexHeiht () {
     const { flexView = this.componentInstance.$root.$el, flexViewHeiht } = this.componentInstance.fillViewCofig
     if (typeof flexViewHeiht === 'number') {
