@@ -4,7 +4,16 @@
     :table-props="tableProps"
     :table-events="tableEvents"
     :column-config="tableColumn"
-  ></table-render>
+  >
+    <!-- 默认插槽 -->
+    <template #oprate="{ row }">
+      <el-link :underline="false" type="primary" @click="gotoDetail(row)">详情</el-link>
+    </template>
+    <!-- header插槽 -->
+    <template #oprate-header="{ column }">
+      <span>{{ column.title }}</span>
+    </template>
+  </table-render>
 </template>
 
 <script>
@@ -29,10 +38,7 @@ export default {
       }
     },
     tableColumn () {
-      const handle = {
-        gotoDetail: this.gotoDetail
-      }
-      return tableColumn(handle)
+      return tableColumn
     }
   },
   methods: {

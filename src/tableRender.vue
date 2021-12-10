@@ -1,7 +1,7 @@
 <script>
 import InitTableHeight from './fillView.js'
 import { tableCompoentMapping, TABLE_SCOPED_SLOT_ALIAS, tableScopedSlot } from './config.js'
-import { isFunction, isObject, isEmpty } from 'utils/type'
+import { isFunction, isObject, isEmpty } from './utils'
 
 export default {
   name: 'table-render',

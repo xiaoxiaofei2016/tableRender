@@ -1,0 +1,1 @@
+* 本demo用于展示配置文件中**scopedSlots为Object，使用jsx语法渲染**的表格

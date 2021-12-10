@@ -24,7 +24,7 @@ export const price = {
   title: '价格',
   scopedSlots: {
     default: ({ row }, h) => {
-      return <i class="el-icon-edit" style={{cursor: 'pointer'}}>{ row.price }</i>
+      return <i class="el-icon-edit" style={{cursor: 'pointer'}}>{row.price}</i>
     },
     edit: ({ row }, h) => {
       return [<el-input-number
@@ -40,21 +40,17 @@ export const price = {
 }
 
 // 操作
-export const oprate = (handle) => ({
+export const oprate = {
   title: '操作',
   field: 'oprate',
   width: 140,
-  scopedSlots: {
-    default: ({ row }, h) => {
-      return <el-link underline={false} type="primary" onClick={() =>  handle.gotoDetail(row)}>详情</el-link>
-    }
-  }
-})
+  useSlot: true
+}
 
-export const tableColumn = (handle) => ([
+export const tableColumn = [
   checkbox,
   name,
   time,
   price,
-  oprate(handle)
-])
+  oprate
+]

@@ -1,0 +1,1 @@
+* 本demo用于展示配置文件中**scopedSlots为Function，采用h函数渲染**的表格
